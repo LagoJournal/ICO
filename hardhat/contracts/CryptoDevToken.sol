@@ -8,14 +8,11 @@ import "./ICryptoDevs.sol";
 contract CryptoDevToken is ERC20, Ownable {
     //price of each cryptodev token
     uint256 public constant tokenPrice = 0.001 ether;
-    //each NFT gives owner 10 tokens, gotta multiply those tokens for *(10^18) because of ERC tokens have smallest denomination of 10^-18,
-    //so each token is 1*(10**18)
     uint256 public constant tokensPerNft = 10 * (10**18);
     //setting max supply at 10000
     uint256 public constant maxTotalSupply = 10000 * (10**18);
     //CryptoDevsNFT contract instance
     ICryptoDevs CryptoDevsNFT;
-    //need to keep track of which tokens have been claimed
     mapping(uint256 => bool) public tokenIdsClaimed;
 
     constructor(address _cryptoDevsContract) ERC20("Crypto Dev Token", "CD") {
